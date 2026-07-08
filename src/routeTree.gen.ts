@@ -14,10 +14,14 @@ import { Route as LoginRouteImport } from './routes/login'
 import { Route as ForgotPasswordRouteImport } from './routes/forgot-password'
 import { Route as AdminRouteImport } from './routes/_admin'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AdminWishlistRequestsRouteImport } from './routes/_admin.wishlist-requests'
+import { Route as AdminServiceRequestsRouteImport } from './routes/_admin.service-requests'
 import { Route as AdminRequestersRouteImport } from './routes/_admin.requesters'
 import { Route as AdminPropertiesRouteImport } from './routes/_admin.properties'
+import { Route as AdminNotificationsRouteImport } from './routes/_admin.notifications'
 import { Route as AdminMediaLibraryRouteImport } from './routes/_admin.media-library'
 import { Route as AdminKycRouteImport } from './routes/_admin.kyc'
+import { Route as AdminInspectionRequestsRouteImport } from './routes/_admin.inspection-requests'
 import { Route as AdminDashboardRouteImport } from './routes/_admin.dashboard'
 import { Route as AdminCategoriesRouteImport } from './routes/_admin.categories'
 import { Route as AdminPropertiesIdRouteImport } from './routes/_admin.properties.$id'
@@ -46,6 +50,16 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AdminWishlistRequestsRoute = AdminWishlistRequestsRouteImport.update({
+  id: '/wishlist-requests',
+  path: '/wishlist-requests',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminServiceRequestsRoute = AdminServiceRequestsRouteImport.update({
+  id: '/service-requests',
+  path: '/service-requests',
+  getParentRoute: () => AdminRoute,
+} as any)
 const AdminRequestersRoute = AdminRequestersRouteImport.update({
   id: '/requesters',
   path: '/requesters',
@@ -56,6 +70,11 @@ const AdminPropertiesRoute = AdminPropertiesRouteImport.update({
   path: '/properties',
   getParentRoute: () => AdminRoute,
 } as any)
+const AdminNotificationsRoute = AdminNotificationsRouteImport.update({
+  id: '/notifications',
+  path: '/notifications',
+  getParentRoute: () => AdminRoute,
+} as any)
 const AdminMediaLibraryRoute = AdminMediaLibraryRouteImport.update({
   id: '/media-library',
   path: '/media-library',
@@ -64,6 +83,11 @@ const AdminMediaLibraryRoute = AdminMediaLibraryRouteImport.update({
 const AdminKycRoute = AdminKycRouteImport.update({
   id: '/kyc',
   path: '/kyc',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminInspectionRequestsRoute = AdminInspectionRequestsRouteImport.update({
+  id: '/inspection-requests',
+  path: '/inspection-requests',
   getParentRoute: () => AdminRoute,
 } as any)
 const AdminDashboardRoute = AdminDashboardRouteImport.update({
@@ -89,10 +113,14 @@ export interface FileRoutesByFullPath {
   '/reset-password': typeof ResetPasswordRoute
   '/categories': typeof AdminCategoriesRoute
   '/dashboard': typeof AdminDashboardRoute
+  '/inspection-requests': typeof AdminInspectionRequestsRoute
   '/kyc': typeof AdminKycRoute
   '/media-library': typeof AdminMediaLibraryRoute
+  '/notifications': typeof AdminNotificationsRoute
   '/properties': typeof AdminPropertiesRouteWithChildren
   '/requesters': typeof AdminRequestersRoute
+  '/service-requests': typeof AdminServiceRequestsRoute
+  '/wishlist-requests': typeof AdminWishlistRequestsRoute
   '/properties/$id': typeof AdminPropertiesIdRoute
 }
 export interface FileRoutesByTo {
@@ -102,10 +130,14 @@ export interface FileRoutesByTo {
   '/reset-password': typeof ResetPasswordRoute
   '/categories': typeof AdminCategoriesRoute
   '/dashboard': typeof AdminDashboardRoute
+  '/inspection-requests': typeof AdminInspectionRequestsRoute
   '/kyc': typeof AdminKycRoute
   '/media-library': typeof AdminMediaLibraryRoute
+  '/notifications': typeof AdminNotificationsRoute
   '/properties': typeof AdminPropertiesRouteWithChildren
   '/requesters': typeof AdminRequestersRoute
+  '/service-requests': typeof AdminServiceRequestsRoute
+  '/wishlist-requests': typeof AdminWishlistRequestsRoute
   '/properties/$id': typeof AdminPropertiesIdRoute
 }
 export interface FileRoutesById {
@@ -117,10 +149,14 @@ export interface FileRoutesById {
   '/reset-password': typeof ResetPasswordRoute
   '/_admin/categories': typeof AdminCategoriesRoute
   '/_admin/dashboard': typeof AdminDashboardRoute
+  '/_admin/inspection-requests': typeof AdminInspectionRequestsRoute
   '/_admin/kyc': typeof AdminKycRoute
   '/_admin/media-library': typeof AdminMediaLibraryRoute
+  '/_admin/notifications': typeof AdminNotificationsRoute
   '/_admin/properties': typeof AdminPropertiesRouteWithChildren
   '/_admin/requesters': typeof AdminRequestersRoute
+  '/_admin/service-requests': typeof AdminServiceRequestsRoute
+  '/_admin/wishlist-requests': typeof AdminWishlistRequestsRoute
   '/_admin/properties/$id': typeof AdminPropertiesIdRoute
 }
 export interface FileRouteTypes {
@@ -132,10 +168,14 @@ export interface FileRouteTypes {
     | '/reset-password'
     | '/categories'
     | '/dashboard'
+    | '/inspection-requests'
     | '/kyc'
     | '/media-library'
+    | '/notifications'
     | '/properties'
     | '/requesters'
+    | '/service-requests'
+    | '/wishlist-requests'
     | '/properties/$id'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -145,10 +185,14 @@ export interface FileRouteTypes {
     | '/reset-password'
     | '/categories'
     | '/dashboard'
+    | '/inspection-requests'
     | '/kyc'
     | '/media-library'
+    | '/notifications'
     | '/properties'
     | '/requesters'
+    | '/service-requests'
+    | '/wishlist-requests'
     | '/properties/$id'
   id:
     | '__root__'
@@ -159,10 +203,14 @@ export interface FileRouteTypes {
     | '/reset-password'
     | '/_admin/categories'
     | '/_admin/dashboard'
+    | '/_admin/inspection-requests'
     | '/_admin/kyc'
     | '/_admin/media-library'
+    | '/_admin/notifications'
     | '/_admin/properties'
     | '/_admin/requesters'
+    | '/_admin/service-requests'
+    | '/_admin/wishlist-requests'
     | '/_admin/properties/$id'
   fileRoutesById: FileRoutesById
 }
@@ -211,6 +259,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/_admin/wishlist-requests': {
+      id: '/_admin/wishlist-requests'
+      path: '/wishlist-requests'
+      fullPath: '/wishlist-requests'
+      preLoaderRoute: typeof AdminWishlistRequestsRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/_admin/service-requests': {
+      id: '/_admin/service-requests'
+      path: '/service-requests'
+      fullPath: '/service-requests'
+      preLoaderRoute: typeof AdminServiceRequestsRouteImport
+      parentRoute: typeof AdminRoute
+    }
     '/_admin/requesters': {
       id: '/_admin/requesters'
       path: '/requesters'
@@ -225,6 +287,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminPropertiesRouteImport
       parentRoute: typeof AdminRoute
     }
+    '/_admin/notifications': {
+      id: '/_admin/notifications'
+      path: '/notifications'
+      fullPath: '/notifications'
+      preLoaderRoute: typeof AdminNotificationsRouteImport
+      parentRoute: typeof AdminRoute
+    }
     '/_admin/media-library': {
       id: '/_admin/media-library'
       path: '/media-library'
@@ -237,6 +306,13 @@ declare module '@tanstack/react-router' {
       path: '/kyc'
       fullPath: '/kyc'
       preLoaderRoute: typeof AdminKycRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/_admin/inspection-requests': {
+      id: '/_admin/inspection-requests'
+      path: '/inspection-requests'
+      fullPath: '/inspection-requests'
+      preLoaderRoute: typeof AdminInspectionRequestsRouteImport
       parentRoute: typeof AdminRoute
     }
     '/_admin/dashboard': {
@@ -278,19 +354,27 @@ const AdminPropertiesRouteWithChildren = AdminPropertiesRoute._addFileChildren(
 interface AdminRouteChildren {
   AdminCategoriesRoute: typeof AdminCategoriesRoute
   AdminDashboardRoute: typeof AdminDashboardRoute
+  AdminInspectionRequestsRoute: typeof AdminInspectionRequestsRoute
   AdminKycRoute: typeof AdminKycRoute
   AdminMediaLibraryRoute: typeof AdminMediaLibraryRoute
+  AdminNotificationsRoute: typeof AdminNotificationsRoute
   AdminPropertiesRoute: typeof AdminPropertiesRouteWithChildren
   AdminRequestersRoute: typeof AdminRequestersRoute
+  AdminServiceRequestsRoute: typeof AdminServiceRequestsRoute
+  AdminWishlistRequestsRoute: typeof AdminWishlistRequestsRoute
 }
 
 const AdminRouteChildren: AdminRouteChildren = {
   AdminCategoriesRoute: AdminCategoriesRoute,
   AdminDashboardRoute: AdminDashboardRoute,
+  AdminInspectionRequestsRoute: AdminInspectionRequestsRoute,
   AdminKycRoute: AdminKycRoute,
   AdminMediaLibraryRoute: AdminMediaLibraryRoute,
+  AdminNotificationsRoute: AdminNotificationsRoute,
   AdminPropertiesRoute: AdminPropertiesRouteWithChildren,
   AdminRequestersRoute: AdminRequestersRoute,
+  AdminServiceRequestsRoute: AdminServiceRequestsRoute,
+  AdminWishlistRequestsRoute: AdminWishlistRequestsRoute,
 }
 
 const AdminRouteWithChildren = AdminRoute._addFileChildren(AdminRouteChildren)
