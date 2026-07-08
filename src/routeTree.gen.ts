@@ -14,8 +14,12 @@ import { Route as LoginRouteImport } from './routes/login'
 import { Route as ForgotPasswordRouteImport } from './routes/forgot-password'
 import { Route as AdminRouteImport } from './routes/_admin'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AdminRequestersRouteImport } from './routes/_admin.requesters'
 import { Route as AdminPropertiesRouteImport } from './routes/_admin.properties'
+import { Route as AdminMediaLibraryRouteImport } from './routes/_admin.media-library'
+import { Route as AdminKycRouteImport } from './routes/_admin.kyc'
 import { Route as AdminDashboardRouteImport } from './routes/_admin.dashboard'
+import { Route as AdminCategoriesRouteImport } from './routes/_admin.categories'
 import { Route as AdminPropertiesIdRouteImport } from './routes/_admin.properties.$id'
 
 const ResetPasswordRoute = ResetPasswordRouteImport.update({
@@ -42,14 +46,34 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AdminRequestersRoute = AdminRequestersRouteImport.update({
+  id: '/requesters',
+  path: '/requesters',
+  getParentRoute: () => AdminRoute,
+} as any)
 const AdminPropertiesRoute = AdminPropertiesRouteImport.update({
   id: '/properties',
   path: '/properties',
   getParentRoute: () => AdminRoute,
 } as any)
+const AdminMediaLibraryRoute = AdminMediaLibraryRouteImport.update({
+  id: '/media-library',
+  path: '/media-library',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminKycRoute = AdminKycRouteImport.update({
+  id: '/kyc',
+  path: '/kyc',
+  getParentRoute: () => AdminRoute,
+} as any)
 const AdminDashboardRoute = AdminDashboardRouteImport.update({
   id: '/dashboard',
   path: '/dashboard',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminCategoriesRoute = AdminCategoriesRouteImport.update({
+  id: '/categories',
+  path: '/categories',
   getParentRoute: () => AdminRoute,
 } as any)
 const AdminPropertiesIdRoute = AdminPropertiesIdRouteImport.update({
@@ -63,8 +87,12 @@ export interface FileRoutesByFullPath {
   '/forgot-password': typeof ForgotPasswordRoute
   '/login': typeof LoginRoute
   '/reset-password': typeof ResetPasswordRoute
+  '/categories': typeof AdminCategoriesRoute
   '/dashboard': typeof AdminDashboardRoute
+  '/kyc': typeof AdminKycRoute
+  '/media-library': typeof AdminMediaLibraryRoute
   '/properties': typeof AdminPropertiesRouteWithChildren
+  '/requesters': typeof AdminRequestersRoute
   '/properties/$id': typeof AdminPropertiesIdRoute
 }
 export interface FileRoutesByTo {
@@ -72,8 +100,12 @@ export interface FileRoutesByTo {
   '/forgot-password': typeof ForgotPasswordRoute
   '/login': typeof LoginRoute
   '/reset-password': typeof ResetPasswordRoute
+  '/categories': typeof AdminCategoriesRoute
   '/dashboard': typeof AdminDashboardRoute
+  '/kyc': typeof AdminKycRoute
+  '/media-library': typeof AdminMediaLibraryRoute
   '/properties': typeof AdminPropertiesRouteWithChildren
+  '/requesters': typeof AdminRequestersRoute
   '/properties/$id': typeof AdminPropertiesIdRoute
 }
 export interface FileRoutesById {
@@ -83,8 +115,12 @@ export interface FileRoutesById {
   '/forgot-password': typeof ForgotPasswordRoute
   '/login': typeof LoginRoute
   '/reset-password': typeof ResetPasswordRoute
+  '/_admin/categories': typeof AdminCategoriesRoute
   '/_admin/dashboard': typeof AdminDashboardRoute
+  '/_admin/kyc': typeof AdminKycRoute
+  '/_admin/media-library': typeof AdminMediaLibraryRoute
   '/_admin/properties': typeof AdminPropertiesRouteWithChildren
+  '/_admin/requesters': typeof AdminRequestersRoute
   '/_admin/properties/$id': typeof AdminPropertiesIdRoute
 }
 export interface FileRouteTypes {
@@ -94,8 +130,12 @@ export interface FileRouteTypes {
     | '/forgot-password'
     | '/login'
     | '/reset-password'
+    | '/categories'
     | '/dashboard'
+    | '/kyc'
+    | '/media-library'
     | '/properties'
+    | '/requesters'
     | '/properties/$id'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -103,8 +143,12 @@ export interface FileRouteTypes {
     | '/forgot-password'
     | '/login'
     | '/reset-password'
+    | '/categories'
     | '/dashboard'
+    | '/kyc'
+    | '/media-library'
     | '/properties'
+    | '/requesters'
     | '/properties/$id'
   id:
     | '__root__'
@@ -113,8 +157,12 @@ export interface FileRouteTypes {
     | '/forgot-password'
     | '/login'
     | '/reset-password'
+    | '/_admin/categories'
     | '/_admin/dashboard'
+    | '/_admin/kyc'
+    | '/_admin/media-library'
     | '/_admin/properties'
+    | '/_admin/requesters'
     | '/_admin/properties/$id'
   fileRoutesById: FileRoutesById
 }
@@ -163,6 +211,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/_admin/requesters': {
+      id: '/_admin/requesters'
+      path: '/requesters'
+      fullPath: '/requesters'
+      preLoaderRoute: typeof AdminRequestersRouteImport
+      parentRoute: typeof AdminRoute
+    }
     '/_admin/properties': {
       id: '/_admin/properties'
       path: '/properties'
@@ -170,11 +225,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminPropertiesRouteImport
       parentRoute: typeof AdminRoute
     }
+    '/_admin/media-library': {
+      id: '/_admin/media-library'
+      path: '/media-library'
+      fullPath: '/media-library'
+      preLoaderRoute: typeof AdminMediaLibraryRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/_admin/kyc': {
+      id: '/_admin/kyc'
+      path: '/kyc'
+      fullPath: '/kyc'
+      preLoaderRoute: typeof AdminKycRouteImport
+      parentRoute: typeof AdminRoute
+    }
     '/_admin/dashboard': {
       id: '/_admin/dashboard'
       path: '/dashboard'
       fullPath: '/dashboard'
       preLoaderRoute: typeof AdminDashboardRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/_admin/categories': {
+      id: '/_admin/categories'
+      path: '/categories'
+      fullPath: '/categories'
+      preLoaderRoute: typeof AdminCategoriesRouteImport
       parentRoute: typeof AdminRoute
     }
     '/_admin/properties/$id': {
@@ -200,13 +276,21 @@ const AdminPropertiesRouteWithChildren = AdminPropertiesRoute._addFileChildren(
 )
 
 interface AdminRouteChildren {
+  AdminCategoriesRoute: typeof AdminCategoriesRoute
   AdminDashboardRoute: typeof AdminDashboardRoute
+  AdminKycRoute: typeof AdminKycRoute
+  AdminMediaLibraryRoute: typeof AdminMediaLibraryRoute
   AdminPropertiesRoute: typeof AdminPropertiesRouteWithChildren
+  AdminRequestersRoute: typeof AdminRequestersRoute
 }
 
 const AdminRouteChildren: AdminRouteChildren = {
+  AdminCategoriesRoute: AdminCategoriesRoute,
   AdminDashboardRoute: AdminDashboardRoute,
+  AdminKycRoute: AdminKycRoute,
+  AdminMediaLibraryRoute: AdminMediaLibraryRoute,
   AdminPropertiesRoute: AdminPropertiesRouteWithChildren,
+  AdminRequestersRoute: AdminRequestersRoute,
 }
 
 const AdminRouteWithChildren = AdminRoute._addFileChildren(AdminRouteChildren)
