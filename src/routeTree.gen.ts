@@ -9,38 +9,249 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as ResetPasswordRouteImport } from './routes/reset-password'
+import { Route as LoginRouteImport } from './routes/login'
+import { Route as ForgotPasswordRouteImport } from './routes/forgot-password'
+import { Route as AdminRouteImport } from './routes/_admin'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AdminWishlistRequestsRouteImport } from './routes/_admin.wishlist-requests'
+import { Route as AdminServiceRequestsRouteImport } from './routes/_admin.service-requests'
+import { Route as AdminRequestersRouteImport } from './routes/_admin.requesters'
+import { Route as AdminPropertiesRouteImport } from './routes/_admin.properties'
+import { Route as AdminNotificationsRouteImport } from './routes/_admin.notifications'
+import { Route as AdminMediaLibraryRouteImport } from './routes/_admin.media-library'
+import { Route as AdminKycRouteImport } from './routes/_admin.kyc'
+import { Route as AdminInspectionRequestsRouteImport } from './routes/_admin.inspection-requests'
+import { Route as AdminDashboardRouteImport } from './routes/_admin.dashboard'
+import { Route as AdminCategoriesRouteImport } from './routes/_admin.categories'
+import { Route as AdminPropertiesIdRouteImport } from './routes/_admin.properties.$id'
 
+const ResetPasswordRoute = ResetPasswordRouteImport.update({
+  id: '/reset-password',
+  path: '/reset-password',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LoginRoute = LoginRouteImport.update({
+  id: '/login',
+  path: '/login',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ForgotPasswordRoute = ForgotPasswordRouteImport.update({
+  id: '/forgot-password',
+  path: '/forgot-password',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminRoute = AdminRouteImport.update({
+  id: '/_admin',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AdminWishlistRequestsRoute = AdminWishlistRequestsRouteImport.update({
+  id: '/wishlist-requests',
+  path: '/wishlist-requests',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminServiceRequestsRoute = AdminServiceRequestsRouteImport.update({
+  id: '/service-requests',
+  path: '/service-requests',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminRequestersRoute = AdminRequestersRouteImport.update({
+  id: '/requesters',
+  path: '/requesters',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminPropertiesRoute = AdminPropertiesRouteImport.update({
+  id: '/properties',
+  path: '/properties',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminNotificationsRoute = AdminNotificationsRouteImport.update({
+  id: '/notifications',
+  path: '/notifications',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminMediaLibraryRoute = AdminMediaLibraryRouteImport.update({
+  id: '/media-library',
+  path: '/media-library',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminKycRoute = AdminKycRouteImport.update({
+  id: '/kyc',
+  path: '/kyc',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminInspectionRequestsRoute = AdminInspectionRequestsRouteImport.update({
+  id: '/inspection-requests',
+  path: '/inspection-requests',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminDashboardRoute = AdminDashboardRouteImport.update({
+  id: '/dashboard',
+  path: '/dashboard',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminCategoriesRoute = AdminCategoriesRouteImport.update({
+  id: '/categories',
+  path: '/categories',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminPropertiesIdRoute = AdminPropertiesIdRouteImport.update({
+  id: '/$id',
+  path: '/$id',
+  getParentRoute: () => AdminPropertiesRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/forgot-password': typeof ForgotPasswordRoute
+  '/login': typeof LoginRoute
+  '/reset-password': typeof ResetPasswordRoute
+  '/categories': typeof AdminCategoriesRoute
+  '/dashboard': typeof AdminDashboardRoute
+  '/inspection-requests': typeof AdminInspectionRequestsRoute
+  '/kyc': typeof AdminKycRoute
+  '/media-library': typeof AdminMediaLibraryRoute
+  '/notifications': typeof AdminNotificationsRoute
+  '/properties': typeof AdminPropertiesRouteWithChildren
+  '/requesters': typeof AdminRequestersRoute
+  '/service-requests': typeof AdminServiceRequestsRoute
+  '/wishlist-requests': typeof AdminWishlistRequestsRoute
+  '/properties/$id': typeof AdminPropertiesIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/forgot-password': typeof ForgotPasswordRoute
+  '/login': typeof LoginRoute
+  '/reset-password': typeof ResetPasswordRoute
+  '/categories': typeof AdminCategoriesRoute
+  '/dashboard': typeof AdminDashboardRoute
+  '/inspection-requests': typeof AdminInspectionRequestsRoute
+  '/kyc': typeof AdminKycRoute
+  '/media-library': typeof AdminMediaLibraryRoute
+  '/notifications': typeof AdminNotificationsRoute
+  '/properties': typeof AdminPropertiesRouteWithChildren
+  '/requesters': typeof AdminRequestersRoute
+  '/service-requests': typeof AdminServiceRequestsRoute
+  '/wishlist-requests': typeof AdminWishlistRequestsRoute
+  '/properties/$id': typeof AdminPropertiesIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/_admin': typeof AdminRouteWithChildren
+  '/forgot-password': typeof ForgotPasswordRoute
+  '/login': typeof LoginRoute
+  '/reset-password': typeof ResetPasswordRoute
+  '/_admin/categories': typeof AdminCategoriesRoute
+  '/_admin/dashboard': typeof AdminDashboardRoute
+  '/_admin/inspection-requests': typeof AdminInspectionRequestsRoute
+  '/_admin/kyc': typeof AdminKycRoute
+  '/_admin/media-library': typeof AdminMediaLibraryRoute
+  '/_admin/notifications': typeof AdminNotificationsRoute
+  '/_admin/properties': typeof AdminPropertiesRouteWithChildren
+  '/_admin/requesters': typeof AdminRequestersRoute
+  '/_admin/service-requests': typeof AdminServiceRequestsRoute
+  '/_admin/wishlist-requests': typeof AdminWishlistRequestsRoute
+  '/_admin/properties/$id': typeof AdminPropertiesIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/forgot-password'
+    | '/login'
+    | '/reset-password'
+    | '/categories'
+    | '/dashboard'
+    | '/inspection-requests'
+    | '/kyc'
+    | '/media-library'
+    | '/notifications'
+    | '/properties'
+    | '/requesters'
+    | '/service-requests'
+    | '/wishlist-requests'
+    | '/properties/$id'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/forgot-password'
+    | '/login'
+    | '/reset-password'
+    | '/categories'
+    | '/dashboard'
+    | '/inspection-requests'
+    | '/kyc'
+    | '/media-library'
+    | '/notifications'
+    | '/properties'
+    | '/requesters'
+    | '/service-requests'
+    | '/wishlist-requests'
+    | '/properties/$id'
+  id:
+    | '__root__'
+    | '/'
+    | '/_admin'
+    | '/forgot-password'
+    | '/login'
+    | '/reset-password'
+    | '/_admin/categories'
+    | '/_admin/dashboard'
+    | '/_admin/inspection-requests'
+    | '/_admin/kyc'
+    | '/_admin/media-library'
+    | '/_admin/notifications'
+    | '/_admin/properties'
+    | '/_admin/requesters'
+    | '/_admin/service-requests'
+    | '/_admin/wishlist-requests'
+    | '/_admin/properties/$id'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AdminRoute: typeof AdminRouteWithChildren
+  ForgotPasswordRoute: typeof ForgotPasswordRoute
+  LoginRoute: typeof LoginRoute
+  ResetPasswordRoute: typeof ResetPasswordRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/reset-password': {
+      id: '/reset-password'
+      path: '/reset-password'
+      fullPath: '/reset-password'
+      preLoaderRoute: typeof ResetPasswordRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/login': {
+      id: '/login'
+      path: '/login'
+      fullPath: '/login'
+      preLoaderRoute: typeof LoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/forgot-password': {
+      id: '/forgot-password'
+      path: '/forgot-password'
+      fullPath: '/forgot-password'
+      preLoaderRoute: typeof ForgotPasswordRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_admin': {
+      id: '/_admin'
+      path: ''
+      fullPath: '/'
+      preLoaderRoute: typeof AdminRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -48,11 +259,132 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/_admin/wishlist-requests': {
+      id: '/_admin/wishlist-requests'
+      path: '/wishlist-requests'
+      fullPath: '/wishlist-requests'
+      preLoaderRoute: typeof AdminWishlistRequestsRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/_admin/service-requests': {
+      id: '/_admin/service-requests'
+      path: '/service-requests'
+      fullPath: '/service-requests'
+      preLoaderRoute: typeof AdminServiceRequestsRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/_admin/requesters': {
+      id: '/_admin/requesters'
+      path: '/requesters'
+      fullPath: '/requesters'
+      preLoaderRoute: typeof AdminRequestersRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/_admin/properties': {
+      id: '/_admin/properties'
+      path: '/properties'
+      fullPath: '/properties'
+      preLoaderRoute: typeof AdminPropertiesRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/_admin/notifications': {
+      id: '/_admin/notifications'
+      path: '/notifications'
+      fullPath: '/notifications'
+      preLoaderRoute: typeof AdminNotificationsRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/_admin/media-library': {
+      id: '/_admin/media-library'
+      path: '/media-library'
+      fullPath: '/media-library'
+      preLoaderRoute: typeof AdminMediaLibraryRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/_admin/kyc': {
+      id: '/_admin/kyc'
+      path: '/kyc'
+      fullPath: '/kyc'
+      preLoaderRoute: typeof AdminKycRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/_admin/inspection-requests': {
+      id: '/_admin/inspection-requests'
+      path: '/inspection-requests'
+      fullPath: '/inspection-requests'
+      preLoaderRoute: typeof AdminInspectionRequestsRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/_admin/dashboard': {
+      id: '/_admin/dashboard'
+      path: '/dashboard'
+      fullPath: '/dashboard'
+      preLoaderRoute: typeof AdminDashboardRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/_admin/categories': {
+      id: '/_admin/categories'
+      path: '/categories'
+      fullPath: '/categories'
+      preLoaderRoute: typeof AdminCategoriesRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/_admin/properties/$id': {
+      id: '/_admin/properties/$id'
+      path: '/$id'
+      fullPath: '/properties/$id'
+      preLoaderRoute: typeof AdminPropertiesIdRouteImport
+      parentRoute: typeof AdminPropertiesRoute
+    }
   }
 }
 
+interface AdminPropertiesRouteChildren {
+  AdminPropertiesIdRoute: typeof AdminPropertiesIdRoute
+}
+
+const AdminPropertiesRouteChildren: AdminPropertiesRouteChildren = {
+  AdminPropertiesIdRoute: AdminPropertiesIdRoute,
+}
+
+const AdminPropertiesRouteWithChildren = AdminPropertiesRoute._addFileChildren(
+  AdminPropertiesRouteChildren,
+)
+
+interface AdminRouteChildren {
+  AdminCategoriesRoute: typeof AdminCategoriesRoute
+  AdminDashboardRoute: typeof AdminDashboardRoute
+  AdminInspectionRequestsRoute: typeof AdminInspectionRequestsRoute
+  AdminKycRoute: typeof AdminKycRoute
+  AdminMediaLibraryRoute: typeof AdminMediaLibraryRoute
+  AdminNotificationsRoute: typeof AdminNotificationsRoute
+  AdminPropertiesRoute: typeof AdminPropertiesRouteWithChildren
+  AdminRequestersRoute: typeof AdminRequestersRoute
+  AdminServiceRequestsRoute: typeof AdminServiceRequestsRoute
+  AdminWishlistRequestsRoute: typeof AdminWishlistRequestsRoute
+}
+
+const AdminRouteChildren: AdminRouteChildren = {
+  AdminCategoriesRoute: AdminCategoriesRoute,
+  AdminDashboardRoute: AdminDashboardRoute,
+  AdminInspectionRequestsRoute: AdminInspectionRequestsRoute,
+  AdminKycRoute: AdminKycRoute,
+  AdminMediaLibraryRoute: AdminMediaLibraryRoute,
+  AdminNotificationsRoute: AdminNotificationsRoute,
+  AdminPropertiesRoute: AdminPropertiesRouteWithChildren,
+  AdminRequestersRoute: AdminRequestersRoute,
+  AdminServiceRequestsRoute: AdminServiceRequestsRoute,
+  AdminWishlistRequestsRoute: AdminWishlistRequestsRoute,
+}
+
+const AdminRouteWithChildren = AdminRoute._addFileChildren(AdminRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AdminRoute: AdminRouteWithChildren,
+  ForgotPasswordRoute: ForgotPasswordRoute,
+  LoginRoute: LoginRoute,
+  ResetPasswordRoute: ResetPasswordRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
